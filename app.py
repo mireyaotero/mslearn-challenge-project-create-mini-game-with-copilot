@@ -3,6 +3,7 @@ import random
 opciones = ['piedra', 'papel', 'tijeras']
 puntuacion_usuario = 0
 puntuacion_computadora = 0
+numero_de_rondas = 0
 
 def eleccion_usuario():
     eleccion = input("Elige piedra, papel o tijeras: ")
@@ -37,13 +38,14 @@ def seguir_jugando():
         seguir_jugando()
 
 def juego():
-    global puntuacion_usuario, puntuacion_computadora
+    global puntuacion_usuario, puntuacion_computadora, numero_de_rondas
     usuario = eleccion_usuario()
     computadora = eleccion_computadora()
     print("Tu elección:", usuario)
     print("Elección de la computadora:", computadora)
     print(determinar_ganador(usuario, computadora))
-    print("Puntuación: Usuario -", puntuacion_usuario, "Computadora -", puntuacion_computadora)
+    numero_de_rondas += 1
+    print("Ronda:", numero_de_rondas, "Puntuación: Usuario -", puntuacion_usuario, "Computadora -", puntuacion_computadora)
     seguir_jugando()
 
 #choose to continue playing or not
