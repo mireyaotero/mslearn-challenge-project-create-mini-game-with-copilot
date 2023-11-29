@@ -1,6 +1,8 @@
 import random
 
 opciones = ['piedra', 'papel', 'tijeras']
+puntuacion_usuario = 0
+puntuacion_computadora = 0
 
 def eleccion_usuario():
     eleccion = input("Elige piedra, papel o tijeras: ")
@@ -14,11 +16,14 @@ def eleccion_computadora():
     return random.choice(opciones)
 
 def determinar_ganador(usuario, computadora):
+    global puntuacion_usuario, puntuacion_computadora
     if usuario == computadora:
         return "Es un empate"
     elif (usuario == "piedra" and computadora == "tijeras") or (usuario == "papel" and computadora == "piedra") or (usuario == "tijeras" and computadora == "papel"):
+        puntuacion_usuario += 1
         return "¡Ganaste!"
     else:
+        puntuacion_computadora += 1
         return "Perdiste"
 
 def seguir_jugando():
@@ -32,11 +37,13 @@ def seguir_jugando():
         seguir_jugando()
 
 def juego():
+    global puntuacion_usuario, puntuacion_computadora
     usuario = eleccion_usuario()
     computadora = eleccion_computadora()
     print("Tu elección:", usuario)
     print("Elección de la computadora:", computadora)
     print(determinar_ganador(usuario, computadora))
+    print("Puntuación: Usuario -", puntuacion_usuario, "Computadora -", puntuacion_computadora)
     seguir_jugando()
 
 #choose to continue playing or not
